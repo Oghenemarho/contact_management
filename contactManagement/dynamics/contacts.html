@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/all.min.css">
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+        }
+
+        main {
+            flex-basis: 75%;
+            display: flex;
+            justify-content: flex-start;
+            height: 100vh;
+            background-color: white;
+            overflow: hidden;
+        }
+
+        main .left {
+            flex-basis: 40%;
+            background-color: white;
+            padding: 2px;
+        }
+
+        main .right {
+            flex-basis: 60%;
+        }
+
+        .top-bar {
+            background-color: white;
+            display: flex;
+            align-items: center;
+            height: 7vh;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+
+        .back {
+            width: 2.5rem;
+        }
+
+        .back .fas {
+            line-height: 6vh;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            font-size: 1.1rem;
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .profile-pic {
+            height: 2.5rem;
+            width: 2.5rem;
+            background-color: #2EA8D1;
+            margin: 2px;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .profile-pic span {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-53%);
+            text-align: center;
+            line-height: 2.5rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .top-bar input {
+            flex: 1;
+            height: 100%;
+            border: none;
+            outline: none;
+            font-size: 1.15rem;
+            padding: 0.5rem;
+        }
+
+
+        .contacts {
+            height: 92vh;
+            margin-top: 1vh;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.452);
+            position: relative;
+        }
+
+        #contact-list {
+            height: 100%;
+            background-color: white;
+            overflow: auto;
+            padding-bottom: 2rem;
+            padding-right: 0.5rem;
+            padding-left: 0.5rem;
+        }
+
+        .contact-group-label {
+            height: 2.5vh;
+            background-color: white;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            word-spacing: 4px;
+            margin: 0;
+            padding-top: 3px;
+            font-weight: bold;
+            padding-left: 3px;
+            color: rgba(0, 0, 0, 0.452);
+            margin-bottom: 1rem;
+        }
+
+        .contact {
+            display: flex;
+            align-items: center;
+            padding: 3px 10px;
+            background-color: white;
+            height: 4.5rem;
+
+        }
+
+        .contact-pic,
+        .logo-home-btn {
+            height: 3rem;
+            width: 3rem;
+            margin-right: 1rem;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .logo-home-btn {
+            background-color: #2EA8D1;
+        }
+
+        #contact-list .contact:nth-child(n+0) .contact-pic {
+            background-image: linear-gradient(to right, #2EA8D1, #2ea8d178);
+        }
+
+        #contact-list .contact:nth-child(2n+0) .contact-pic {
+            background-image: linear-gradient(to right, #572ED1, #572ed14b);
+        }
+
+        #contact-list .contact:nth-child(3n+0) .contact-pic {
+            background-image: linear-gradient(to right, #2E57D1, #2e57d160);
+        }
+
+        .contact-pic span,
+        .logo-home-btn span {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            line-height: 3rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .contact-name {
+            font-size: 1rem;
+            color: rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+            word-spacing: 3.5px;
+        }
+
+        .add-contact-btn {
+            height: 3.2rem;
+            width: 3.2rem;
+            background-color: orangered;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 5%;
+            right: 10%;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+        }
+
+        .add-contact-btn .fas {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-55%);
+            text-align: center;
+            line-height: 3.2rem;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .add-contact-btn:hover {
+            transform: rotateZ(45deg);
+            background-color: white;
+            border: 2px solid orangered;
+            color: orangered;
+        }
+
+        .add-contact-btn:hover .fas {
+            color: orangered;
+        }
+
+
+
+
+        #options {
+            height: 100vh;
+            background-image: linear-gradient(to right, rgba(241, 235, 222, 0.534), white);
+            flex-basis: 25%;
+        }
+
+        #options .logo-home-btn {
+            width: 3.5rem;
+            height: 3.5rem;
+            margin: 1rem;
+        }
+
+        #options .logo-home-btn span {
+            font-family: cursive;
+            line-height: 3.5rem;
+        }
+
+        .options-list {
+            margin-top: 2rem;
+        }
+
+        .options-list li {
+            height: 3rem;
+            line-height: 3rem;
+            background-color: rgba(0, 0, 0, 0);
+            margin-bottom: 0.2rem;
+            font-size: .9rem;
+            letter-spacing: 2px;
+            word-spacing: 4px;
+        }
+
+        .options-list li button {
+            background-color: rgba(0, 0, 0, 0);
+            height: 100%;
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: left;
+            padding-left: 1rem;
+        }
+
+        /*This is for when you click on one of the options filters*/
+        .options-list li.selected {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-head {
+            z-index: 2;
+            position: sticky;
+            height: 25vh;
+            background-image: linear-gradient(to right, #2EA8D1, #2EA8D15e);
+            padding: 0.5rem;
+        }
+
+        .initials-display {
+            height: 5rem;
+            width: 5rem;
+            border-radius: 50%;
+            border: 2px solid white;
+            position: relative;
+            margin: 0.5rem auto;
+        }
+
+        .initials-display span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            transform: translate(-50%, -50%);
+            font-family: serif;
+            color: white;
+            font-size: 1.8rem;
+
+        }
+
+        .contact-name-display {
+            font-family: sans-serif;
+            letter-spacing: 2px;
+            word-spacing: 4px;
+            font-size: 1.3rem;
+            color: white;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .contact-info {
+            overflow: auto;
+            height: 65vh;
+            /* background-color: green; */
+        }
+
+        .contact-info div{
+            margin: 0;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            min-height: 12vh;
+        }
+
+        .contact-info div ul{
+            list-style: none;
+        }
+
+        .contact-info div ul li{
+            margin: 0.2rem 0;
+            letter-spacing: 2px;
+        }
+
+        .contact-info div p{
+            letter-spacing: 1.5px;
+            word-spacing: 3px;
+        }
+
+        .contact-info div:nth-child(even){
+            background-color: rgba(128, 128, 128, 0.144);
+        }
+
+        .contact-actions {
+            height: 10vh;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            font-size: 1.2rem;
+        }
+
+        .contact-actions div {
+            width: 3rem;
+            background-color: whitesmoke;
+            color: rgba(0, 0, 0, 0.829);
+            height: 3rem;
+            margin: 2px 1.5rem;
+            position: relative;
+            border-radius: 50%;
+            transition: 0.1s;
+        }
+
+        .contact-actions div:hover {
+            color: white;
+            background-color: cornflowerblue;
+        }
+
+        .contact-actions div .fas {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: 0.3s ease all;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="options">
+        <div class="logo-home-btn">
+            <span>KYC</span>
+        </div>
+
+        <ul class="options-list">
+            <li class="selected"><button type="submit">All Contacts</button></li>
+            <li><button type="submit">Favorites</button></li>
+            <li><button type="submit">Family and Friends</button></li>
+            <li><button type="submit">Business</button></li>
+            <li><button type="submit">Service Lines</button></li>
+            <li><button type="submit">Acquaintances</button></li>
+            <li><button type="submit">Blacklist</button></li>
+            <li><button type="submit">Others</button></li>
+        </ul>
+    </div>
+
+    <main>
+        <div class="left">
+            <div class="top-bar">
+                <div class="back"><i class="fas fa-arrow-left"></i></div>
+                <input type="text" name="search-contacts" id="search-contacts">
+                <div class="profile-pic">
+                    <span>
+                        OA
+                    </span>
+                </div>
+            </div>
+
+            <div class="contacts">
+                <div class="contact-group-label">ALL CONTACTS</div>
+                <ul id="contact-list">
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="contact-pic">
+                            <span>JO</span>
+                        </div>
+
+                        <div class="contact-name">
+                            Tellah Marhii
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Add Contact button goes here-->
+                <div class="add-contact-btn">
+                    <i class="fas fa-plus"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="contact-head">
+                <div class="initials-display">
+                    <span>
+                        JO
+                    </span>
+                </div>
+
+                <div class="contact-name-display">
+                    John Okafor
+                </div>
+            </div>
+
+            <div class="contact-info">
+                <div class="mobile-contacts">
+                    <h4>mobile</h4>
+                    <ul>
+                        <li>09020144573</li>
+                        <li>07068898203</li>
+                    </ul>
+                </div>
+
+                <div class="email-addresses">
+                    <h4>email</h4>
+                    <ul>
+                        <li>richardakporhuarho@gmail.com</li>
+                        <li>tellahmarhii@gmail.com</li>
+                    </ul>
+                </div>
+
+                <div class="house-address">
+                    <h4>house address</h4>
+                    <p>
+                        76 Erorode Street, Enebiri Layout Off Jakpa Road, Effurun, Delta State.                       
+                    </p>
+                </div>
+
+                <div class="additional-info">
+                    <h4>additional info</h4>
+                    <p>
+                        profession: software developer,
+                        work-place: 88 Garage road, kdhits Off Ogbomoso Road
+                    </p>
+                </div>
+            </div>
+
+            <div class="contact-actions">
+                <!-- Edit, Delete and Share buttons go here-->
+                <div class="delete-option">
+                    <i class="fas fa-trash"></i>
+                </div>
+
+                <div class="edit-option">
+                    <i class="fas fa-pen"></i>
+                </div>
+
+                <div class="share-option">
+                    <i class="fas fa-share-alt"></i>
+                </div>
+
+                <div class="share-option">
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+</body>
+
+</html>

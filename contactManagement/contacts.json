@@ -1,0 +1,26 @@
+{
+    "contacts": [
+        {
+            "contact-name": "Muzan Lailai",
+            "phone-numbers": [
+                "09020144573",
+                "07068898203"
+            ],
+            "email-addresses": [
+                "richardakporhuarho@gmail.com",
+                "marhii@gmail.com"
+            ]
+        },
+        {
+            "contact-name": "Tellah Marhii",
+            "phone-numbers": [
+                "09020144574",
+                "07068898204"
+            ],
+            "email-addresses": [
+                "richardakporhuarho1@gmail.com",
+                "marhii@gmail1.com"
+            ]
+        }
+    ]
+}
